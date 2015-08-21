@@ -1,0 +1,7 @@
+gamess-setup		/usr/bin
+*.py			/usr/share/gamess-setup
+compile.sh		/usr/share/gamess-setup
+help.html		/usr/share/gamess-setup
+rungms*.patch		/usr/share/gamess-setup
+*.1			/usr/share/man/man1
+*.desktop		/usr/share/applications

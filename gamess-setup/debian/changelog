@@ -1,0 +1,24 @@
+gamess-setup (1.3) wheezy; urgency=low
+
+  * Supported GAMESS version December 5, 2014 R1
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Thu, 20 Aug 2015 22:41:50 +0900
+
+gamess-setup (1.2) wheezy; urgency=low
+
+  * Added a field for displaying download and compile log.
+  * Added help for GAMESS Setup.
+
+ -- Synge Todo <wistaria@issp.u-tokyo.ac.jp>  Sun, 22 Sep 2013 14:33:00 +0900
+
+gamess-setup (1.1) wheezy; urgency=low
+
+  * Fixed gamess-setup launcher.
+
+ -- Synge Todo <wistaria@issp.u-tokyo.ac.jp>  Sun, 01 Sep 2013 21:08:59 +0900
+
+gamess-setup (1.0) wheezy; urgency=low
+
+  * Initial Release.
+
+ -- Synge Todo <wistaria@issp.u-tokyo.ac.jp>  Sun, 01 Sep 2013 12:01:10 +0900

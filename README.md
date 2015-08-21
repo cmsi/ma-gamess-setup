@@ -1,1 +1,1 @@
-# ma-gamess-setup
+# gamess-setup Debian package
