@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: gamess-setup
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, csh, wget, python-wxgtk2.8
+Depends: ${misc:Depends}, ${python:Depends}, build-essential, gfortran, csh, wget, python-wxgtk3.0
 Description: GUI utility for installing GAMESS
  gamess-setup is a GUI utility for downloading the source code of
  GAMESS from the official website and installing it under $HOME/bin
