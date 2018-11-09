@@ -1,0 +1,23 @@
+*** rungms.orig	2018-11-09 23:54:14.334000000 +0900
+--- rungms	2018-11-09 23:55:13.482000000 +0900
+***************
+*** 61,69 ****
+  #       See also a very old LoadLeveler "ll-gms" for some IBM systems.
+  #
+  set TARGET=sockets
+! set SCR=/scr1/$USER
+! set USERSCR=~/gamess-devv
+! set GMSPATH=~/gamess-devv
+  #
+  set JOB=$1      # name of the input file xxx.inp, give only the xxx part
+  set VERNO=$2    # revision number of the executable created by 'lked' step
+--- 61,69 ----
+  #       See also a very old LoadLeveler "ll-gms" for some IBM systems.
+  #
+  set TARGET=sockets
+! set SCR=$HOME/scr
+! set USERSCR=$HOME/scr
+! set GMSPATH=$HOME/share/gamess
+  #
+  set JOB=$1      # name of the input file xxx.inp, give only the xxx part
+  set VERNO=$2    # revision number of the executable created by 'lked' step

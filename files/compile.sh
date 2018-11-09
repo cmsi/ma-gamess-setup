@@ -37,6 +37,8 @@ elif [ "$MD5SUM" = "e9fa2e725ccbd69f4d996ab68bb65ff2" ]; then
   VERSION="201704"
 elif [ "$MD5SUM" = "5a9370ab80a2e9693148d839c324b5ba" ]; then
   VERSION="201802"
+elif [ "$MD5SUM" = "4e253a01b8f79526867b2fa8efecebef" ]; then
+  VERSION="201809"
 else
   echo "Error: unkown version or corrupted archive"
   exit 127

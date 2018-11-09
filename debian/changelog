@@ -1,3 +1,9 @@
+gamess-setup (1:201809-1) unstable; urgency=low
+
+  * Supported GAMESS version Sept 30, 2018
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Fri, 09 Nov 2018 23:46:53 +0900
+
 gamess-setup (1.5) unstable; urgency=low
 
   * Supported GAMESS version Feb 14, 2018
