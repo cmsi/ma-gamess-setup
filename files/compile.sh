@@ -39,6 +39,8 @@ elif [ "$MD5SUM" = "5a9370ab80a2e9693148d839c324b5ba" ]; then
   VERSION="201802"
 elif [ "$MD5SUM" = "4e253a01b8f79526867b2fa8efecebef" ]; then
   VERSION="201809"
+elif [ "$MD5SUM" = "b05850e2703a1e48ff5e4b28c9abbd0d" ]; then
+  VERSION="201909"
 else
   echo "Error: unkown version or corrupted archive"
   exit 127
@@ -47,6 +49,12 @@ echo "GAMESS version = $VERSION"
 mkdir -p "$SHAREDIR"
 echo "Extracting $SOURCE into $SHAREDIR"
 tar zxvf "$SOURCE" -C "$SHAREDIR"
+
+# patch to lked
+if [ -f "$SCRIPTDIR/lked-$VERSION.patch" ]; then
+  echo "Applying patch to lked..."
+  patch -i "$SCRIPTDIR/lked-$VERSION.patch" -p 0 -d "$GAMESSDIR"
+fi
 
 case "$(dpkg --print-architecture)" in
         amd64)
@@ -66,7 +74,7 @@ setenv GMS_BUILD_DIR $GAMESSDIR
 setenv GMS_TARGET $_TARGET
 setenv GMS_FORTRAN gfortran
 setenv GMS_GFORTRAN_VERNO 4.7
-setenv GMS_MATHLIB none
+setenv GMS_MATHLIB blas
 setenv GMS_MATHLIB_PATH /usr/lib
 setenv GMS_DDI_COMM sockets
 setenv GMS_LIBCCHEM false
@@ -74,6 +82,7 @@ setenv GMS_EIGEN_PATH
 setenv GMS_PHI false
 setenv GMS_SHMTYPE sysv
 setenv GMS_OPENMP false
+setenv GMS_FPE_FLAGS
 EOF
 echo "Generating $GAMESSDIR/Makefile"
 cat << EOF > "$GAMESSDIR/Makefile"

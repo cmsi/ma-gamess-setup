@@ -1,0 +1,32 @@
+*** lked.orig	2019-12-25 09:11:07.687373366 +0900
+--- lked	2019-12-25 09:19:18.971122870 +0900
+***************
+*** 497,502 ****
+--- 497,508 ----
+        set BLAS=' '
+        breaksw
+  
++    case blas:
++       set MATHLIBS="-llapack -lblas"
++       set BLAS=' '
++       set LAPACK=' '
++       breaksw
++ 
+     case none:
+     default:
+        echo "Warning.  No math library was found, you should install one."
+***************
+*** 809,814 ****
+--- 815,826 ----
+        set BLAS=' '
+        breaksw
+  
++    case blas:
++       set MATHLIBS="-llapack -lblas"
++       set BLAS=' '
++       set LAPACK=' '
++       breaksw
++ 
+     case none:
+     default:
+        echo "Warning.  No math library was found, you should install one."

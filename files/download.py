@@ -12,7 +12,7 @@ def Download(username, password, targetdir):
     if (not os.path.isdir(targetdir)):
         os.mkdir(targetdir)
     print "Downloading " + config.url + "..."
-    cmd = ['wget', '--http-user=' + username, '--http-password=' + password, '--output-document=' + targetdir + '/' + config.file, config.url]
+    cmd = ['wget', '--no-check-certificate', '--http-user=' + username, '--http-password=' + password, '--output-document=' + targetdir + '/' + config.file, config.url]
     p = subprocess.check_call(cmd)
     print "Done."
     return 0
