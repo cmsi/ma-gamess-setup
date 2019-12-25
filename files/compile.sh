@@ -82,7 +82,8 @@ setenv GMS_EIGEN_PATH
 setenv GMS_PHI false
 setenv GMS_SHMTYPE sysv
 setenv GMS_OPENMP false
-setenv GMS_FPE_FLAGS
+setenv GMS_FPE_FLAGS -fno-range-check
+setenv GMS_MSUCC false
 EOF
 echo "Generating $GAMESSDIR/Makefile"
 cat << EOF > "$GAMESSDIR/Makefile"
