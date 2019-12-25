@@ -8,7 +8,7 @@ GAMESS Setup is a GUI utility for downloading the source code of GAMESS from the
 
 ### Version
 
-* 201809-1 (09 Nov 2018)
+* 201909-1 (25 Dec 2019)
 
 ### Provided packages
 
@@ -16,7 +16,8 @@ GAMESS Setup is a GUI utility for downloading the source code of GAMESS from the
 
 ### Target distributions and architectures
 
-* Debian stretch (all), jessie (all), wheezy (all)
+* Debian buster (all), stretch (all), jessie (all)
+* Ubuntu bionic (all), xenial (all)
 
 ### For users
 
