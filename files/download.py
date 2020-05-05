@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python2
 
 # Download script for GAMESS written by Synge Todo
 

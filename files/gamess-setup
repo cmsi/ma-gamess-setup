@@ -2,7 +2,7 @@
 
 DIR=`dirname $0`
 if test -f "$DIR/gamess-setup-gui.py"; then
-  python $DIR/gamess-setup-gui.py $HOME
+  python2 $DIR/gamess-setup-gui.py $HOME
 else
-  python /usr/share/gamess-setup/gamess-setup-gui.py $HOME
+  python2 /usr/share/gamess-setup/gamess-setup-gui.py $HOME
 fi
