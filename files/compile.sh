@@ -43,6 +43,8 @@ elif [ "$MD5SUM" = "b05850e2703a1e48ff5e4b28c9abbd0d" ]; then
   VERSION="201909"
 elif [ "$MD5SUM" = "8186b269f5c24b38da2f91c017e0826e" ]; then
   VERSION="202006"
+elif [ "$MD5SUM" = "2a0142b5a8eab8f0db8aeae3af940c0d" ]; then
+  VERSION="202009"
 else
   echo "Warning: unkown version. Let's assume 202006."
 fi
