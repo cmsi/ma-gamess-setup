@@ -11,15 +11,15 @@ import config
 def Download(username, password, targetdir):
     if (not os.path.isdir(targetdir)):
         os.mkdir(targetdir)
-    print "Downloading " + config.url + "..."
+    print("Downloading " + config.url + "...")
     cmd = ['wget', '--no-check-certificate', '--http-user=' + username, '--http-password=' + password, '--output-document=' + targetdir + '/' + config.file, config.url]
     p = subprocess.check_call(cmd)
-    print "Done."
+    print("Done.")
     return 0
 
 if __name__ == '__main__':
     if (len(sys.argv) != 4):
-        print "Usage:", sys.argv[0], "username", "password", "target_directory"
+        print("Usage:", sys.argv[0], "username", "password", "target_directory")
         sys.exit(127)
     username = sys.argv[1]
     password = sys.argv[2]

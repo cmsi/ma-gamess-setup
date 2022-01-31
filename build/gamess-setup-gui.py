@@ -272,7 +272,7 @@ class Frame(wx.Frame):
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
-        print "Usage:", sys.argv[0], "prefix"
+        print("Usage:", sys.argv[0], "prefix")
         sys.exit(127)
     scriptdir = os.path.dirname(sys.argv[0])
     prefix = sys.argv[1]

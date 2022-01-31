@@ -6,7 +6,7 @@ file = "gamess-current.tar.gz"
 url = base_url + "/" + dir + "/" + file
 
 if __name__ == '__main__':
-    print "base_url =", base_url
-    print "dir =", dir
-    print "file =", file
-    print "url =", url
+    print("base_url =", base_url)
+    print("dir =", dir)
+    print("file =", file)
+    print("url =", url)
