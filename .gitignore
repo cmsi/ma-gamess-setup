@@ -1,4 +1,7 @@
-*.pyc
-gamess-setup_*
-gamess-setup/debian/files
-gamess-setup/debian/gamess-setup*
+build
+*.buildinfo
+*.changes
+*.deb
+*.debian.tar.xz
+*.dsc
+*.tar.gz

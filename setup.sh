@@ -1,0 +1,1 @@
+../ma-common/script/setup-nosrc.sh
