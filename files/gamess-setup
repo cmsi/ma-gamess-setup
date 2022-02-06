@@ -1,8 +1,15 @@
 #!/bin/sh
 
 DIR=`dirname $0`
-if test -f "$DIR/gamess-setup-gui.py"; then
-  python2 $DIR/gamess-setup-gui.py $HOME
+
+if [ $(lsb_release -s -c) = 'stretch' -o $(lsb_release -s -c) = 'buster' -o $(lsb_release -s -c) = 'bionic' ]; then
+  PYTHON="python2"
 else
-  python2 /usr/share/gamess-setup/gamess-setup-gui.py $HOME
+  PYTHON="python3"
+fi
+
+if test -f "${DIR}/gamess-setup-gui.py"; then
+  ${PYTHON} ${DIR}/gamess-setup-gui.py ${HOME}
+else
+  ${PYTHON} /usr/share/gamess-setup/gamess-setup-gui.py ${HOME}
 fi
