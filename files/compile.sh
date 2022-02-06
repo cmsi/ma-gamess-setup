@@ -93,13 +93,18 @@ EOF
 
 # Compile
 echo "Compiling GAMESS"
-make -C "$GAMESSDIR"
+make -C "$GAMESSDIR" 2>&1 | tee /tmp/gamess-setup.log.$$
 
-# install rngms into prefix/bin
-echo "Making symbolic to $PREFIX/bin/rungms"
-mkdir -p "$PREFIX/bin"
-rm -f "$PREFIX/bin/rungms"
-ln -s "$GAMESSDIR/rungms" "$PREFIX/bin/rungms"
-echo "Making scratch directory: $HOME/scr"
-mkdir -p "$HOME/scr"
-echo "Compilation Done"
+if [ -x "$GAMESSDIR/gamess.00.x" ]; then
+  # install rngms into prefix/bin
+  echo "Making symbolic to $PREFIX/bin/rungms"
+  mkdir -p "$PREFIX/bin"
+  rm -f "$PREFIX/bin/rungms"
+  ln -s "$GAMESSDIR/rungms" "$PREFIX/bin/rungms"
+  echo "Making scratch directory: $HOME/scr"
+  mkdir -p "$HOME/scr"
+  echo "Compilation Done"
+else
+  echo "Compilation Failed"
+  exit 127
+fi
