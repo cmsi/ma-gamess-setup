@@ -27,25 +27,7 @@ if [ -f "$SOURCE" ]; then :; else
   exit 127
 fi
 MD5SUM=`md5sum "$SOURCE" | awk '{print $1}'`
-if [ "$MD5SUM" = "977a01a8958238c67b707f125999fcec" ]; then
-  VERSION="201305"
-elif [ "$MD5SUM" = "6403592eaa885cb3691505964d684516" ]; then
-  VERSION="201412"
-elif [ "$MD5SUM" = "47ef3161ab148acf98a118997825f9a0" ]; then
-  VERSION="201608"
-elif [ "$MD5SUM" = "e9fa2e725ccbd69f4d996ab68bb65ff2" ]; then
-  VERSION="201704"
-elif [ "$MD5SUM" = "5a9370ab80a2e9693148d839c324b5ba" ]; then
-  VERSION="201802"
-elif [ "$MD5SUM" = "4e253a01b8f79526867b2fa8efecebef" ]; then
-  VERSION="201809"
-elif [ "$MD5SUM" = "b05850e2703a1e48ff5e4b28c9abbd0d" ]; then
-  VERSION="201909"
-elif [ "$MD5SUM" = "8186b269f5c24b38da2f91c017e0826e" ]; then
-  VERSION="202006"
-elif [ "$MD5SUM" = "2a0142b5a8eab8f0db8aeae3af940c0d" ]; then
-  VERSION="202009"
-elif [ "$MD5SUM" = "5b019733bd4054cdb27a0d84dbbd5d1a" ]; then
+if [ "$MD5SUM" = "5b019733bd4054cdb27a0d84dbbd5d1a" ]; then
   VERSION="202109"
 else
   echo "Warning: unkown version. Let's assume latest version."
@@ -56,20 +38,22 @@ mkdir -p "$SHAREDIR"
 echo "Extracting $SOURCE into $SHAREDIR"
 tar zxf "$SOURCE" -C "$SHAREDIR"
 
-# patch to lked
-if [ -f "$SCRIPTDIR/lked-$VERSION.patch" ]; then
-  echo "Applying patch to lked..."
-  patch -i "$SCRIPTDIR/lked-$VERSION.patch" -p 0 -d "$GAMESSDIR"
+# apply patch
+if [ -f "$SCRIPTDIR/gamess-$VERSION.patch" ]; then
+  echo "Applying patch..."
+  patch -i "$SCRIPTDIR/gamess-$VERSION.patch" -p 1 -d "$GAMESSDIR"
 fi
 
 case "$(dpkg --print-architecture)" in
-        amd64)
-                _TARGET="linux64"
-                ;;
-
-        i386)
-                _TARGET="linux32"
-                ;;
+  amd64)
+    _TARGET="linux64"
+    ;;
+  arm64)
+    _TARGET="linux64"
+    ;;
+  i386)
+    _TARGET="linux32"
+    ;;
 esac
 
 # Generate config file
@@ -78,19 +62,26 @@ cat << EOF > "$GAMESSDIR/install.info"
 setenv GMS_PATH $GAMESSDIR
 setenv GMS_BUILD_DIR $GAMESSDIR
 setenv GMS_TARGET $_TARGET
+setenv GMS_HPC_SYSTEM_TARGET generic
 setenv GMS_FORTRAN gfortran
-setenv GMS_GFORTRAN_VERNO 4.9
-setenv GMS_MATHLIB blas
-setenv GMS_MATHLIB_PATH /usr/lib
+setenv GMS_GFORTRAN_VERNO $(gfortran --version | head -1 | cut -d' ' -f5 | cut -d. -f1,2)
+setenv GMS_MATHLIB openblas
+setenv GMS_MATHLIB_PATH $(if [ -f /usr/lib/libopenblas.a ]; then echo /usr/lib; else echo /usr/lib/$(arch)-linux-gnu; fi)
 setenv GMS_DDI_COMM sockets
-setenv GMS_LIBCCHEM false
-setenv GMS_EIGEN_PATH
-setenv GMS_PHI false
-setenv GMS_SHMTYPE sysv
-setenv GMS_OPENMP false
-setenv GMS_FPE_FLAGS -fno-range-check
-setenv GMS_MSUCC false
-setenv GMS_LIBXC false
+setenv GMS_MSUCC             false
+setenv GMS_LIBCCHEM          false
+setenv GMS_PHI               none
+setenv GMS_SHMTYPE           sysv
+setenv GMS_OPENMP            false
+setenv GMS_LIBXC             false
+setenv GMS_MDI               false
+setenv  GMS_VM2              false
+setenv  TINKER               false
+setenv  VB2000               false
+setenv  XMVB                 false
+setenv  NEO                  false
+setenv  NBO                  false
+setenv GMS_FPE_FLAGS        ''        
 EOF
 echo "Generating $GAMESSDIR/Makefile"
 cat << EOF > "$GAMESSDIR/Makefile"
@@ -100,20 +91,11 @@ GMS_BUILD_PATH = $GAMESSDIR
 include \$(GMS_PATH)/Makefile.in
 EOF
 
-# Generate tools/actvte.x
-echo "Generating tools/actvte.x"
-sed 's/^\*UNX/    /' "$GAMESSDIR/tools/actvte.code" > "$GAMESSDIR/tools/actvte.f"
-gfortran -O2 -o "$GAMESSDIR/tools/actvte.x" "$GAMESSDIR/tools/actvte.f"
-
 # Compile
 echo "Compiling GAMESS"
 make -C "$GAMESSDIR"
 
-# patch to rungms and install into prefix/bin
-if [ -f "$SCRIPTDIR/rungms-$VERSION.patch" ]; then
-  echo "Applying patch to rungms..."
-  patch -i "$SCRIPTDIR/rungms-$VERSION.patch" -p 0 -d "$GAMESSDIR"
-fi
+# install rngms into prefix/bin
 echo "Making symbolic to $PREFIX/bin/rungms"
 mkdir -p "$PREFIX/bin"
 rm -f "$PREFIX/bin/rungms"

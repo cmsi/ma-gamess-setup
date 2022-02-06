@@ -1,0 +1,40 @@
+diff -urN gamess.orig/comp gamess/comp
+--- gamess.orig/comp	2021-10-26 17:49:56.000000000 +0900
++++ gamess/comp	2022-02-06 14:11:37.000000000 +0900
+@@ -2426,7 +2426,7 @@
+          # ARM64 ThunderX2
+          if (`uname -p` == aarch64) set EXTRAOPT="-mcpu=native $EXTRAOPT"
+          #
+-         set EXTRAOPT="-mcmodel=medium $EXTRAOPT"
++         if (`uname -m` == x86_64) set EXTRAOPT="-mcmodel=medium $EXTRAOPT"
+          #
+          (set echo; gfortran -c -fdefault-integer-8 -g $GMS_FPE_FLAGS $OPT $EXTRAOPT $MODULE_F)
+          breaksw
+diff -urN gamess.orig/ddi/compddi gamess/ddi/compddi
+--- gamess.orig/ddi/compddi	2021-10-26 17:49:56.000000000 +0900
++++ gamess/ddi/compddi	2022-02-06 14:11:02.000000000 +0900
+@@ -838,7 +838,7 @@
+    #
+    set ARCH='-m64'
+    if (`uname -p` == ia64) set ARCH=''
+-   if (`uname -p` == aarch64) set ARCH='-mcpu=native'
++   if (`uname -m` == aarch64) set ARCH='-mcpu=native'
+ 
+    set CC = 'gcc'
+    set CFLAGS = "-DLINUX $ARCH -O3 -fstrict-aliasing -I./"
+diff -urN gamess.orig/rungms gamess/rungms
+--- gamess.orig/rungms	2021-10-26 17:49:56.000000000 +0900
++++ gamess/rungms	2022-02-06 14:09:35.000000000 +0900
+@@ -81,9 +81,9 @@
+ #       See also a very old LoadLeveler "ll-gms" for some IBM systems.
+ #
+ set TARGET=sockets
+-set SCR=~/gamess/restart
+-set USERSCR=~/gamess/restart
+-set GMSPATH=~/gamess
++set SCR=$HOME/scr
++set USERSCR=$HOME/scr
++set GMSPATH=$HOME/share/gamess
+ #
+ # Get any MDI-related options and remove them from the argument list
+ #
