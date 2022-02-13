@@ -1,3 +1,9 @@
+gamess-setup (1:202109-4) unstable; urgency=low
+
+  * Fix python version for bullseye/focal and later
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Sun, 13 Feb 2022 18:50:20 +0900
+
 gamess-setup (1:202109-3) unstable; urgency=low
 
   * Fix dependency
