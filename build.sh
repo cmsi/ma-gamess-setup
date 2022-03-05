@@ -1,1 +1,1 @@
-../ma-common/script/build-all.sh
+../ma-common/script/build.sh
