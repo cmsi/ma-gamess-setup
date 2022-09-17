@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 base_url = "http://www.msg.chem.iastate.edu"
 dir = "GAMESS/download/source"

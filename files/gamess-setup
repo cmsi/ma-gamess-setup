@@ -2,11 +2,7 @@
 
 DIR=`dirname $0`
 
-if [ $(lsb_release -s -c) = 'stretch' -o $(lsb_release -s -c) = 'buster' -o $(lsb_release -s -c) = 'bionic' ]; then
-  PYTHON="python2"
-else
-  PYTHON="python3"
-fi
+PYTHON="python3"
 
 if test -f "${DIR}/gamess-setup-gui.py"; then
   ${PYTHON} ${DIR}/gamess-setup-gui.py ${HOME}

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 # GAMESS Setup GUI written by Synge Todo
 
@@ -28,7 +28,7 @@ class Frame(wx.Frame):
         self.radio_download.Bind(wx.EVT_RADIOBUTTON, self.OnChooseRadioDownload)
         self.radio_download.SetValue(True)
         layout.Add(self.radio_download, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
-        grid_1 = wx.FlexGridSizer(2, 3)
+        grid_1 = wx.FlexGridSizer(2, 3, 0, 0)
         self.text_username = wx.TextCtrl(self.panel, -1, value = 'source', size = (285, -1))
         self.text_username.Disable()
         self.text_password = wx.TextCtrl(self.panel, -1) # style = wx.TE_PASSWORD
@@ -46,7 +46,7 @@ class Frame(wx.Frame):
         self.radio_local.Bind(wx.EVT_RADIOBUTTON, self.OnChooseRadioLocal)
         layout.Add(self.radio_local, 0, wx.LEFT | wx.RIGHT | wx.TOP, 10)
 
-        grid_2 = wx.FlexGridSizer(2, 3)
+        grid_2 = wx.FlexGridSizer(2, 3, 0, 0)
         self.text_file = wx.TextCtrl(self.panel, -1, size = (325, -1), style = wx.TE_READONLY)
         self.button_choose = wx.Button(self.panel, -1, "Choose")
         self.button_choose.Bind(wx.EVT_BUTTON, self.OnChoose)
@@ -235,7 +235,7 @@ class Frame(wx.Frame):
         self.text_log.AppendText('Start compilation of GAMESS\n')
 
     def StartDownload(self, username, password, target):
-        cmd = ['python2', os.path.join(self.scriptdir, 'download.py'), username, password, target]
+        cmd = ['python3', os.path.join(self.scriptdir, 'download.py'), username, password, target]
         self.process_download = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                                  stderr=subprocess.STDOUT,
                                                  stdin=subprocess.PIPE)

@@ -1,3 +1,9 @@
+gamess-setup (1:202209-1) unstable; urgency=low
+
+  * Fix for wx4
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Sat, 17 Sep 2022 08:47:13 +0900
+
 gamess-setup (1:202109-4) unstable; urgency=low
 
   * Fix python version for bullseye/focal and later
