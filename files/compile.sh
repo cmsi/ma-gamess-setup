@@ -65,6 +65,7 @@ setenv GMS_TARGET $_TARGET
 setenv GMS_HPC_SYSTEM_TARGET generic
 setenv GMS_FORTRAN gfortran
 setenv GMS_GFORTRAN_VERNO $(gfortran --version | head -1 | cut -d' ' -f5 | cut -d. -f1,2)
+setenv GMS_LAPACK_LINK_LINE -llapack
 setenv GMS_MATHLIB openblas
 setenv GMS_MATHLIB_PATH $(if [ -f /usr/lib/libopenblas.a ]; then echo /usr/lib; else echo /usr/lib/$(arch)-linux-gnu; fi)
 setenv GMS_DDI_COMM sockets

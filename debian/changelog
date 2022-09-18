@@ -1,3 +1,9 @@
+gamess-setup (1:202209-2) unstable; urgency=low
+
+  * Add GMS_LAPACK_LINK_LINE
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Sun, 18 Sep 2022 11:05:41 +0900
+
 gamess-setup (1:202209-1) unstable; urgency=low
 
   * Fix for wx4
